@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NewComer Form for Connect Team</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Tempusdominus Bbootstrap 4 -->
+  <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+		  <!-- Theme style -->
+		  <link rel="stylesheet" href="dist/css/adminlte.min.css">
+
+
+<script type="text/javascript">
+   var urlsubmit = "http://localhost:8000/api/newcomer";
+   var urldata = "http://localhost:8000/api/getdata"; 
+</script>
+
+
+</head>
+<body>
+
+
+				<div class="modal fade" id="modal-success">
+        <div class="modal-dialog">
+          <div class="modal-content bg-success">
+ 
+            <div class="modal-body">
+              <p id="resultMessage"></p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" id="closemodal" onclick='closemodal()' data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+
+
+      <div class="modal fade" id="modal-danger">
+        <div class="modal-dialog">
+          <div class="modal-content bg-danger">
+            <div class="modal-header">
+              <h4 id="errorMessageTitle" class="modal-title">Danger Modal</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="errorMessage">
+              
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->      
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" style="  position: absolute;
+  margin: auto;
+  right: 8%;
+  left: 8%;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-12">
+		  <img src="images/headerimg.jpg" alt="" style="  width: 100%;
+  height: auto;">
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+  <form id="myForm" method="post">
+    <input type="hidden" id="form" name="form" value="full">
+      <div class="container-fluid">
+        <!-- SELECT2 EXAMPLE -->
+        <div class="card card-default">
+
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+			  
+			  	 <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+
+					  <div class="form-group">
+						<label>Service ke</label>
+							<select class="form-control" name="service_type" id="service_type" style="width: 100%;">
+
+							</select>
+						</div>
+					  
+					  
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Tanggal Service</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                            </div>
+                            <input type="text" name="service_date" id="service_date" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                          </div>
+                      </div>
+                    </div>
+                  </div>			  
+			  
+			  <hr>
+			  
+			  	 <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>First Name</label>
+						<input type="text" class="form-control" id="firstname" name="firstname" value="" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter ...">
+                      </div>
+                    </div>
+                  </div>
+
+				  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <label>Phone</label>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter ...">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Mobile Phone</label>
+                        <input type="text" class="form-control" id="mobile_phone" name="mobile_phone" placeholder="Enter ...">
+                      </div>
+                    </div>
+				  </div>	
+
+				  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label>Email</label>
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                            </div>
+                            <input type="text" class="form-control" name="email" placeholder="Enter ...">
+                          </div>
+                        
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Date of Birth</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                          </div>
+                          <input type="text" name="dob" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label>Gender</label>
+                        <div class="form-check">
+                            <div class="row">
+                            <div class="col-sm-4">
+                            <input class="form-check-input" type="radio" name="gender" value="male">
+                            <label class="form-check-label">Male</label>
+                            </div>
+                            <div class="col-sm-4">
+                            <input class="form-check-input" type="radio" name="gender" value="female">
+                            <label class="form-check-label">Female</label>
+                            </div>
+                          </div>
+                        <div>
+                      </div>
+                    </div>
+				  </div>				  
+
+              	</div>
+              <!-- /.col -->
+              
+            </div>
+            <!-- /.row -->
+			<hr>
+            <div class="row">
+				<div class="col-sm-12">
+						<!-- text input -->
+						<div class="form-group">
+							<label>Address1</label>
+							<input type="text" class="form-control" id="address1" name="address1" placeholder="Enter ...">
+						</div>
+						</div>
+            </div>
+			<!-- /.row -->
+			
+            <div class="row">
+              <div class="col-md-12">
+			  	 <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="city" placeholder="City ...">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="state" placeholder="State/Province ...">
+                      </div>
+                    </div>
+                  </div>
+
+				  <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="country" placeholder="Country ...">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="zipcode" placeholder="Zipcode ...">
+                      </div>
+                    </div>
+				  </div>	
+
+				  <div class="row">
+                    <div class="col-sm-12">
+                      <!-- text input -->
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="address2" placeholder="Address2 ...">
+                      </div>
+                    </div>
+				  </div>				  
+
+              	</div>
+              <!-- /.col -->
+              
+            </div>
+
+			<hr>
+			
+            <div class="row">
+              <div class="col-md-12">
+
+
+				  <div class="row">
+                    <div class="col-sm-6">
+						<div class="form-group" id="keperluan_list">
+						<label>Saya Ingin</label>
+						
+							
+							
+						</div>
+                    </div>
+                    <div class="col-sm-6">
+						<div class="form-group" id="tujuan_list">
+						<label>yg saya sukai hari ini</label>
+											
+						
+							
+							
+						</div>
+                    </div>
+				  </div>	
+
+				  
+					<div class="row">
+
+                    <div class="col-sm-6">
+                      <div class="form-group">
+					  <label>Keperluan Lain</label>
+                        <input type="text" class="form-control" name="keperluan_lain" placeholder="Enter ...">
+                      </div>
+                    </div>
+                  </div>
+				  
+		<hr>		  
+				  <div class="row">
+                    <div class="col-sm-12">
+					  <!-- text input -->
+                      <div class="form-group">
+                        <label>Permohonan Doa</label>
+                        <textarea class="form-control" rows="3" name="permohonan_doa" placeholder="Enter ..."></textarea>
+                      </div>					  
+<!--
+                      <div class="form-group">
+					    <label>Christianity</label>
+                        <input type="text" class="form-control" name="why_christian" placeholder="Deskripsikan seorang Kristen yang bagaimanakah Anda ...">
+					  </div>
+          -->
+				  
+
+					</div>
+					
+				  </div>				  
+
+
+            <div class="row">
+              <div class="col-md-12">
+			  	 <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+					  <div class="form-group">
+						<label>Diundang Oleh</label>
+							<select class="form-control select2" name="invited_by" id="invited_by" style="width: 100%;">
+							<option></option>
+
+							</select>
+						</div>	
+                    </div>
+                    <div class="col-sm-6">
+					  <div class="form-group">
+						<label>Mengetahui dari</label>
+							<select class="form-control select2" name="knows_from" id="knows_from" style="width: 100%;">
+							<option></option>
+							<option value="website">Website</option>
+							<option value="social media">Social Media</option>
+							<option value="friends/family">Teman / Keluarga</option>
+							<option value="transfer">Transfer from IFGF</option>
+							<option value="other">Lainnya</option>
+							
+
+              </select>
+              <input type="hidden" class="form-control" name="other_value" id="other_value">
+              <input type="hidden" class="form-control" name="tujuan_lain" id="tujuan_lain">
+
+              </div>	
+                    </div>
+                  </div>
+			  
+
+              	</div>
+              <!-- /.col -->
+              
+            </div>
+
+
+
+
+				  
+
+            <div class="row">
+              <div class="col-md-12">
+			  	 <div class="row">
+                    <div class="col-sm-6">
+                      <!-- text input -->
+                      <div class="form-group">
+					  <label>Status Kawin</label>
+							<select class="form-control select2" name="marital_status" style="width: 100%;">
+							<option value="0">Belum menikah</option>
+										<option value="1">Sudah menikah</option>
+										<option value="2">Single parent</option>
+							</select>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+					  <label>Jumlah Anak</label>
+                        <input type="text" class="form-control" name="number_of_children" placeholder="Enter ...">
+                      </div>
+                    </div>
+                  </div>
+			  
+
+              	</div>
+              <!-- /.col -->
+              
+            </div>
+
+			<div class="row">
+                    <div class="col-sm-12">
+                      <!-- text input -->
+                      <div class="form-group">
+					  <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" id="customCheckbox1" name="is_subscribe" value="1">
+                          <label for="customCheckbox1" class="custom-control-label">Berikan tanda untuk mendapatkan informasi kegiatan setiap bulan.</label>
+                        </div>
+                      </div>
+                    </div>
+				  </div>	
+
+
+              	</div>
+              <!-- /.col -->
+              
+            </div>
+
+
+
+
+
+          </div>
+          <!-- /.card-body -->
+          <div class="card-footer">
+		  			<button type="submit" name="submitButton" id="submitButton" class="btn btn-info">Submit</button>
+          </div>
+        </div>
+        <!-- /.card -->
+
+          </div>
+          <!-- /.col (right) -->
+        </div>
+        <!-- /.row -->
+	  </div><!-- /.container-fluid -->
+</form>
+    </section>
+    <!-- /.content -->
+  </div>
+
+
+
+<!-- jQuery -->
+<script src="plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/inputmask/min/jquery.inputmask.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  })
+</script>
+
+
+  
+
+<script type="text/javascript">
+
+function closemodal(){
+  location.reload();
+}
+
+$("#modal-success").on("hidden.bs.modal", function () {
+    location.reload();
+});
+
+
+$(window).on('load',function(){
+
+
+      var d = new Date();
+      var datestring = ("0" + d.getDate()).slice(-2) + ("0"+(d.getMonth()+1)).slice(-2) + d.getFullYear();
+      document.getElementById('service_date').value = datestring;
+
+
+  $.ajax({
+    url: urldata,
+                type: 'GET',
+                dataType: 'json',
+                crossDomain: true,
+                success: function(data) {
+
+                  for(var key in data.servicetypes) {
+                    var id = data.servicetypes[key].id;
+                    var value = data.servicetypes[key].name;
+                    $('#service_type').append(`
+                      <option value="${value}">${value}</option>
+                    `)
+                  }  
+
+                  for(var key in data.keperluan) {
+                    var id = data.keperluan[key].id;
+                    var value = data.keperluan[key].name;
+                    $('#keperluan_list').append(`
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" name="keperluan[]" id="customCheckboxKeperluanList${id}" value="${id}">
+                          <label for="customCheckboxKeperluanList${id}" class="custom-control-label">${value}</label>
+                        </div>
+                    `)
+                  }      
+
+
+
+                  for(var key in data.tujuan) {
+                    var id = data.tujuan[key].id;
+                    var value = data.tujuan[key].name;
+                    $('#tujuan_list').append(`
+                        <div class="custom-control custom-checkbox">
+                          <input class="custom-control-input" type="checkbox" name="tujuan[]" id="customCheckboxTujuanList${id}" value="${id}">
+                          <label for="customCheckboxTujuanList${id}" class="custom-control-label">${value}</label>
+                        </div>
+                    `)
+                  }              
+
+                  for(var key in data.member) {
+                    var id = data.member[key].id;
+                    var value = data.member[key].firstname;
+                    var value2 = data.member[key].lastname;
+                    $('#invited_by').append(`
+                      <option value="${id}">${value} ${value2}</option>
+                    `)
+                  }  
+
+
+                },
+                error: function (e) {
+                  //alert("Something went wrong on LOAD");
+                  location.href = "500.html"
+                }
+            });
+});
+
+
+
+
+
+    $(document).ready(function() {
+    
+      $('#knows_from').change(function () {
+			if ($(this).val() == 'other') {
+        $('#other_value').attr('type', 'text').focus();       
+        $('#tujuan_lain').attr('type', 'hidden');
+				if ($(this).val() == 'other') {
+					$('#other_value').attr('placeholder', 'Sebutkan sumber lainnya')
+				}
+			} else if ($(this).val() == 'transfer') {
+        $('#tujuan_lain').attr('type', 'text').focus();  
+        $('#other_value').attr('type', 'hidden');    
+				if ($(this).val() == 'transfer') {
+					$('#tujuan_lain').attr('placeholder', 'Hanya diisi jika Anda transfer dari IFGF')
+				}
+			} else {
+        $('#tujuan_lain').attr('type', 'hidden');
+        $('#other_value').attr('type', 'hidden');
+      }
+		});
+
+
+
+
+
+
+        $('#myForm').submit(function() {
+            $.ajax({
+                type: 'POST',
+                url: urlsubmit,
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(data) {
+                  //alert(JSON.stringify(data));
+                  $("#resultMessage").text(JSON.stringify(data.message));
+                 $('#modal-success').modal('show');
+                 $("#myForm")[0].reset();
+                 window.scrollTo(0, 0);
+                 var d = new Date();
+                  var datestring = ("0" + d.getDate()).slice(-2) + ("0"+(d.getMonth()+1)).slice(-2) + d.getFullYear();
+                  document.getElementById('service_date').value = datestring;
+                 setTimeout(function(){ location.reload(); }, 10000);
+                },
+                error: function (data) {
+                  //alert(JSON.stringify(data));
+                  $("#errorMessageTitle").text(JSON.stringify(data.responseJSON.message));
+
+                  $("#errorMessage").empty();
+                  for(var key in data.responseJSON.errors) {
+                    var id = data.responseJSON.errors[key];
+
+                    $('#errorMessage').append(`
+                      <p>${id}</p>
+                    `)
+                  } 
+
+                  $('#modal-danger').modal('show');
+                  window.scrollTo(0, 0);
+                  //alert("Something went wrong");
+                }
+            })
+            return false;
+        });
+
+
+
+    })
+    </script>
+
+
+
+
+
+    <!-- JS -->
+
+</body>
+</html>
